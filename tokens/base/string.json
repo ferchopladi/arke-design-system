@@ -1,0 +1,59 @@
+{
+  "_comment": "This file was generated automatically by Supernova.io and should not be changed manually. To modify the format or content of this file, please contact your design system team.",
+  "string": {
+    "font": {
+      "roboto": {
+        "value": "Roboto",
+        "type": "string"
+      },
+      "roboto-serif": {
+        "value": "Roboto Serif",
+        "type": "string"
+      },
+      "roboto-mono": {
+        "value": "Roboto Mono",
+        "type": "string"
+      }
+    },
+    "weight": {
+      "regular": {
+        "value": "Regular",
+        "type": "string"
+      },
+      "semi-bold": {
+        "value": "Semi Bold",
+        "type": "string"
+      },
+      "bold": {
+        "value": "Bold",
+        "type": "string"
+      },
+      "black": {
+        "value": "Black",
+        "type": "string"
+      },
+      "italic": {
+        "value": "Italic",
+        "type": "string"
+      }
+    },
+    "use": {
+      "display": {
+        "value": "{string.font.roboto-serif}",
+        "type": "string"
+      },
+      "title": {
+        "value": "{string.font.roboto-serif}",
+        "type": "string"
+      },
+      "body": {
+        "value": "{string.font.roboto}",
+        "type": "string"
+      },
+      "caption": {
+        "value": "{string.font.roboto}",
+        "type": "string"
+      }
+    }
+  }
+}
