@@ -6,6 +6,28 @@ const px = (val: string): number => parseInt(val, 10)
 
 const prim = colorJson.color.primitive
 const br   = colorJson.color.brand
+const cat  = colorJson.color.brand.category
+const sem  = colorJson.color.semantic
+
+// Resolves Supernova references like "{color.primitive.neutral.0}" to their hex value
+const resolve = (val: string): string => {
+  const ref = val.match(/^\{(.+)\}$/)
+  if (!ref) return val
+  const node = ref[1]
+    .split('.')
+    .reduce<unknown>((acc, key) => (acc as Record<string, unknown>)[key], colorJson) as { value: string }
+  return resolve(node.value)
+}
+
+type CategoryJson = { base: { value: string }; dark: { value: string }; surface: { value: string }; text: { value: string }; subtle: { value: string } }
+
+const categoryColors = (c: CategoryJson) => ({
+  base:    c.base.value,
+  dark:    c.dark.value,
+  surface: c.surface.value,
+  text:    c.text.value,
+  subtle:  c.subtle.value,
+})
 
 // ─── Colors ───────────────────────────────────────────────────────────────────
 
@@ -112,8 +134,113 @@ export const colors = {
       950: br.accent['950'].value,
     },
   },
+  category: {
+    cat1Azul:     categoryColors(cat['cat1-azul']),
+    cat2Naranja:  categoryColors(cat['cat2-naranja']),
+    cat3Verde:    categoryColors(cat['cat3-verde']),
+    cat4Violeta:  categoryColors(cat['cat4-violeta']),
+    cat5Amarillo: categoryColors(cat['cat5-amarillo']),
+    cat6Rojo:     categoryColors(cat['cat6-rojo']),
+    cat7Rosa:     categoryColors(cat['cat7-rosa']),
+  },
   semantic: {
+    surface: {
+      overlay:       resolve(sem.surface.overlay.value),
+      transparent:   resolve(sem.surface.transparent.value),
+      primary:       resolve(sem.surface.primary.value),
+      secondary:     resolve(sem.surface.secondary.value),
+      tertiary:      resolve(sem.surface.tertiary.value),
+      input:         resolve(sem.surface.input.value),
+      brand:         resolve(sem.surface.brand.value),
+      brandSubtle:   resolve(sem.surface['brand-subtle'].value),
+      brandMuted:    resolve(sem.surface['brand-muted'].value),
+      success:       resolve(sem.surface.success.value),
+      successSubtle: resolve(sem.surface['success-subtle'].value),
+      warning:       resolve(sem.surface.warning.value),
+      warningSubtle: resolve(sem.surface['warning-subtle'].value),
+      error:         resolve(sem.surface.error.value),
+      errorSubtle:   resolve(sem.surface['error-subtle'].value),
+      info:          resolve(sem.surface.info.value),
+      infoSubtle:    resolve(sem.surface['info-subtle'].value),
+      hover:         resolve(sem.surface.hover.value),
+      pressed:       resolve(sem.surface.pressed.value),
+      selected:      resolve(sem.surface.selected.value),
+      disabled:      resolve(sem.surface.disabled.value),
+    },
+    text: {
+      default:            resolve(sem.text.default.value),
+      muted:              resolve(sem.text.muted.value),
+      subtle:             resolve(sem.text.subtle.value),
+      disabled:           resolve(sem.text.disabled.value),
+      inverse:            resolve(sem.text.inverse.value),
+      placeholder:        resolve(sem.text.placeholder.value),
+      brand:              resolve(sem.text.brand.value),
+      brandMuted:         resolve(sem.text['brand-muted'].value),
+      success:            resolve(sem.text.success.value),
+      warning:            resolve(sem.text.warning.value),
+      error:              resolve(sem.text.error.value),
+      info:               resolve(sem.text.info.value),
+      link:               resolve(sem.text.link.value),
+      linkHover:          resolve(sem.text['link-hover'].value),
+      linkVisited:        resolve(sem.text['link-visited'].value),
+      onBrand:            resolve(sem.text['on-brand'].value),
+      onBrandMuted:       resolve(sem.text['on-brand-muted'].value),
+      onSuccess:          resolve(sem.text['on-success'].value),
+      onWarning:          resolve(sem.text['on-warning'].value),
+      onError:            resolve(sem.text['on-error'].value),
+      onInfo:             resolve(sem.text['on-info'].value),
+      onSurfaceDark:      resolve(sem.text['on-surface-dark'].value),
+      onSurfaceDarkMuted: resolve(sem.text['on-surface-dark-muted'].value),
+    },
+    border: {
+      default:       resolve(sem.border.default.value),
+      subtle:        resolve(sem.border.subtle.value),
+      disabled:      resolve(sem.border.disabled.value),
+      strong:        resolve(sem.border.strong.value),
+      inverse:       resolve(sem.border.inverse.value),
+      hover:         resolve(sem.border.hover.value),
+      focus:         resolve(sem.border.focus.value),
+      selected:      resolve(sem.border.selected.value),
+      pressed:       resolve(sem.border.pressed.value),
+      brand:         resolve(sem.border.brand.value),
+      brandHover:    resolve(sem.border['brand-hover'].value),
+      brandFocus:    resolve(sem.border['brand-focus'].value),
+      brandSelected: resolve(sem.border['brand-selected'].value),
+      brandPressed:  resolve(sem.border['brand-pressed'].value),
+      success:       resolve(sem.border.success.value),
+      warning:       resolve(sem.border.warning.value),
+      error:         resolve(sem.border.error.value),
+      info:          resolve(sem.border.info.value),
+    },
+    icons: {
+      default:      resolve(sem.icons.dafault.value), // key is misspelled "dafault" in Supernova
+      muted:        resolve(sem.icons.muted.value),
+      subtle:       resolve(sem.icons.subtle.value),
+      disabled:     resolve(sem.icons.disabled.value),
+      inverse:      resolve(sem.icons.inverse.value),
+      brand:        resolve(sem.icons.brand.value),
+      brandMuted:   resolve(sem.icons['brand-muted'].value),
+      brandHover:   resolve(sem.icons['brand-hover'].value),
+      brandPressed: resolve(sem.icons['brand-pressed'].value),
+      success:      resolve(sem.icons.success.value),
+      warning:      resolve(sem.icons.warning.value),
+      error:        resolve(sem.icons.error.value),
+      info:         resolve(sem.icons.info.value),
+      onBrand:      resolve(sem.icons['on-brand'].value),
+      onSuccess:    resolve(sem.icons['on-success'].value),
+      onWarning:    resolve(sem.icons['on-warning'].value),
+      onError:      resolve(sem.icons['on-error'].value),
+      onInfo:       resolve(sem.icons['on-info'].value),
+    },
     button: {
+      glassIcon: {
+        bg:           resolve(sem.button['glass-icon'].bg.value),
+        text:         resolve(sem.button['glass-icon'].text.value),
+        hover:        resolve(sem.button['glass-icon'].hover.value),
+        active:       resolve(sem.button['glass-icon'].active.value),
+        disabledBg:   resolve(sem.button['glass-icon']['disabled-bg'].value),
+        disabledText: resolve(sem.button['glass-icon']['disabled-text'].value),
+      },
       // References resolved from color.json → semantic.button → primitive/brand chains
       primary: {
         surfaceEnabled:  br.primary['950'].value,    // brand.primary.950
@@ -176,6 +303,7 @@ export const padding = {
   32:  px(dim['padding-32'].value),
   40:  px(dim['padding-40'].value),
   48:  px(dim['padding-48'].value),
+  64:  px(dim['padding-64'].value),
 } as const
 
 // ─── Radius ───────────────────────────────────────────────────────────────────
@@ -222,6 +350,8 @@ export const typography = {
     md:  px(sizeJson['md'].value),
     lg:  px(sizeJson['lg'].value),
     xl:  px(sizeJson['xl'].value),
+    '2xl': px(sizeJson['2xl'].value),
+    '3xl': px(sizeJson['3xl'].value),
   },
   lineHeight: {
     xxs: px(lhJson['xxs'].value),
@@ -230,6 +360,8 @@ export const typography = {
     md:  px(lhJson['md'].value),
     lg:  px(lhJson['lg'].value),
     xl:  px(lhJson['xl'].value),
+    '2xl': px(lhJson['2xl'].value),
+    '3xl': px(lhJson['3xl'].value),
   },
   // Mapped from Figma/Supernova weight names to React Native fontWeight values
   fontWeight: {
