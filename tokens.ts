@@ -213,7 +213,7 @@ export const colors = {
       info:          resolve(sem.border.info.value),
     },
     icons: {
-      default:      resolve(sem.icons.dafault.value), // key is misspelled "dafault" in Supernova
+      default:      resolve(sem.icons.default.value),
       muted:        resolve(sem.icons.muted.value),
       subtle:       resolve(sem.icons.subtle.value),
       disabled:     resolve(sem.icons.disabled.value),
