@@ -811,7 +811,7 @@
         }
       },
       "icons": {
-        "dafault": {
+        "default": {
           "value": "{color.primitive.neutral.900}",
           "type": "color"
         },
@@ -945,7 +945,7 @@
             "type": "color"
           },
           "icon-enabled": {
-            "value": "{color.semantic.icons.dafault}",
+            "value": "{color.semantic.icons.default}",
             "type": "color"
           },
           "icon-disabled": {
