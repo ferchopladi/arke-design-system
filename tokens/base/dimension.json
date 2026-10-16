@@ -2,12 +2,16 @@
   "_comment": "This file was generated automatically by Supernova.io and should not be changed manually. To modify the format or content of this file, please contact your design system team.",
   "dimension": {
     "dimension": {
-      "radius-0": {
-        "value": "0px",
-        "type": "dimension"
-      },
       "radius-4": {
         "value": "4px",
+        "type": "dimension"
+      },
+      "padding-4": {
+        "value": "4px",
+        "type": "dimension"
+      },
+      "radius-0": {
+        "value": "0px",
         "type": "dimension"
       },
       "radius-8": {
@@ -40,14 +44,6 @@
       },
       "spacing-8": {
         "value": "8px",
-        "type": "dimension"
-      },
-      "spacing-12": {
-        "value": "12px",
-        "type": "dimension"
-      },
-      "spacing-16": {
-        "value": "16px",
         "type": "dimension"
       },
       "spacing-24": {
@@ -86,32 +82,12 @@
         "value": "96px",
         "type": "dimension"
       },
-      "spacing-120": {
-        "value": "120px",
-        "type": "dimension"
-      },
       "spacing-160": {
         "value": "160px",
         "type": "dimension"
       },
-      "none_1": {
-        "value": "0px",
-        "type": "dimension"
-      },
-      "padding-4": {
-        "value": "4px",
-        "type": "dimension"
-      },
-      "padding-8": {
-        "value": "8px",
-        "type": "dimension"
-      },
       "padding-12": {
         "value": "12px",
-        "type": "dimension"
-      },
-      "padding-16": {
-        "value": "16px",
         "type": "dimension"
       },
       "padding-20": {
@@ -152,6 +128,30 @@
       },
       "padding-96": {
         "value": "96px",
+        "type": "dimension"
+      },
+      "spacing-12": {
+        "value": "12px",
+        "type": "dimension"
+      },
+      "spacing-16": {
+        "value": "16px",
+        "type": "dimension"
+      },
+      "spacing-120": {
+        "value": "120px",
+        "type": "dimension"
+      },
+      "none_1": {
+        "value": "0px",
+        "type": "dimension"
+      },
+      "padding-8": {
+        "value": "8px",
+        "type": "dimension"
+      },
+      "padding-16": {
+        "value": "16px",
         "type": "dimension"
       },
       "padding-120": {
@@ -218,16 +218,16 @@
         "value": "24px",
         "type": "dimension"
       },
+      "3xl": {
+        "value": "48px",
+        "type": "dimension"
+      },
       "xl": {
         "value": "32px",
         "type": "dimension"
       },
       "2xl": {
         "value": "40px",
-        "type": "dimension"
-      },
-      "3xl": {
-        "value": "48px",
         "type": "dimension"
       }
     }
